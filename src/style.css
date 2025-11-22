@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #141414;
+  --color-secondary: #e50000;
+  --color-third: #1a1a1a;
+  --color-grayBlack: #1f1f1f;
+  --color-customGray: #999;
+}
+
+.line {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.41), black);
+}
+
+.line-2 {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 40%,
+    rgb(0, 0, 0) 100%
+  );
+}
+
+.round {
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid #555;
+  border-bottom: 25px solid transparent;
+}
+
+.linear {
+  background: linear-gradient(to right, #000, #e5000029);
+}
+
+.linearBorder {
+  border-bottom: 1px solid red;
+}
+
+.startLinear {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.895) 40%, #e5000096);
+}
+
+
+footer h2 {
+  color: #999;
+}
+
+footer h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+footer h2 {
+  margin-bottom: 8px;
+}
