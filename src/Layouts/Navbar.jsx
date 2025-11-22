@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router";
 import { FaSearch, FaBell } from "react-icons/fa"; // FontAwesome
 
 function Navbar() {
+  const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
   return (
     <>
-      <section className="flex justify-between items-center px-30 py-7 text-white absolute w-full z-40">
+      <section className="flex justify-between items-center px-25 py-7 text-white absolute w-full z-40">
         <NavLink className="flex items-center">
           <img src="/logo.svg" alt="" />
           <h1 className="text-3xl font-semibold">StreamVibe</h1>
@@ -46,8 +47,39 @@ function Navbar() {
           </NavLink>
         </div>
 
-        <div className="flex gap-7 text-3xl">
-          <FaSearch className="cursor-pointer" />
+        <div className="flex items-center text-3xl">
+          <div
+            className={`
+              text-2xl rounded-2xl overflow-hidden
+              transition-all duration-500 ease-in-out
+              ${isSearchInputOpen ? "max-w-80 " : "max-w-0 mx-0"} 
+              
+            `}
+          >
+            <input
+              type="search"
+              placeholder="Search..."
+              className="w-full border px-4 py-2 rounded-2xl focus:outline-white
+"
+            />
+          </div>
+          {/* <div
+            className={`overflow-hidden transition-all duration-300 ease-in-out w-full ${
+              isSearchInputOpen ? "max-w-40 mt-2" : "max-w-0 mt-0"
+            }`}
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full border px-4 py-2 rounded-2xl"
+            />
+          </div>{" "} */}
+          <FaSearch
+            onClick={() => setIsSearchInputOpen(!isSearchInputOpen)}
+            className={`cursor-pointer mx-4 transition-all duration-500 ease-in-out  ${
+              isSearchInputOpen ? "rotate-360" : ""
+            }`}
+          />
           <FaBell className="cursor-pointer" />
         </div>
       </section>
