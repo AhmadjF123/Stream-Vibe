@@ -6,20 +6,20 @@ function ChoosePlan() {
 
   return (
     <>
-      <div className="text-white bg-primary px-20 ">
-        <div className="text-white bg-primary flex justify-between items-center pt-15 mb-15">
+      <div className="text-white bg-primary md:px-20 px-4">
+        <div className="text-white bg-primary flex justify-between flex-wrap items-center pt-15 md:mb-15 mb-8">
           <div className="">
-            <h1 className="text-[28px] font-bold">
+            <h1 className="md:text-[28px] text-[24px] font-bold">
               Choose the plan that's right for you
             </h1>
-            <p className="text-customGray pt-2">
+            <p className="text-customGray md:text-[16px] text-[14px] pt-2">
               Join StreamVibe and select from our flexible subscription options
               tailored to suit your viewing preferences. Get ready for non-stop
               entertainment!
             </p>
           </div>
 
-          <div className="border border-grayBlack rounded-lg flex gap-2 p-2">
+          <div className="border border-grayBlack rounded-lg flex gap-2 p-2 md:mt-0 mt-8">
             <button
               onClick={() => setSubscriptionType("monthly")}
               className={`${
@@ -39,7 +39,7 @@ function ChoosePlan() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           <ChoosePlanCard
             title={"Basic"}
             description={

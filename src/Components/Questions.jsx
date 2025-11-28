@@ -4,18 +4,19 @@ import QuestionCard from "./QuestionCard";
 function Questions() {
   return (
     <>
-      <div className="bg-primary text-white px-20 pt-15">
+      <div className="bg-primary text-white px-8 md:px-20 pt-15">
         <div>
-          <h1 className="text-[28px] font-bold">Frequently Asked Questions</h1>
-          <p className="text-customGray">
+          <h1 className="md:text-[28px] text-[20px] font-bold">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-customGray md:text-[16px] text-[14px]">
             Got questions? We've got answers! Check out our FAQ section to find
             answers to the most common questions about StreamVibe.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 pt-15">
-          {/* Left Column */}
-          <div className="flex flex-col">
+        <div className="flex flex-wrap gap-5 md:gap-10 pt-15">
+          <div className="flex-1 min-w-[300px] flex flex-col">
             <QuestionCard
               number="01"
               title="What is StreamVibe?"
@@ -38,8 +39,7 @@ function Questions() {
             />
           </div>
 
-          {/* Right Column */}
-          <div className="flex flex-col">
+          <div className="flex-1 min-w-[300px] flex flex-col">
             <QuestionCard
               number="05"
               title="How do I sign up for StreamVibe?"

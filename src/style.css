@@ -21,11 +21,19 @@
 }
 
 .round {
-  width: 0;
-  height: 0;
   border-top: 25px solid transparent;
   border-left: 50px solid #555;
   border-bottom: 25px solid transparent;
+
+}
+
+
+@media (max-width: 640px) {
+  .round {
+    border-top: 12px solid transparent;
+    border-left: 25px solid #555;
+    border-bottom: 12px solid transparent;
+  }
 }
 
 .linear {
@@ -41,6 +49,13 @@
 }
 
 
+@media (max-width: 475px) {
+  .startLinear{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.895) 40%, #e500006e);
+
+  }
+}
+
 footer h2 {
   color: #999;
 }
@@ -49,6 +64,18 @@ footer h1 {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+@media (max-width: 475px) {
+  footer h1 {
+    font-size: 16x;
+    
+  }
+  
+  footer h2 {
+    font-size: 14px;
+
+  }
 }
 
 footer h2 {

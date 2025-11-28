@@ -5,8 +5,8 @@ import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 function Footer() {
   return (
     <>
-      <footer className="bg-black px-20 text-white pb-10">
-        <div className="grid grid-cols-6 ">
+      <footer className="bg-black px-5 md:px-20 text-white pb-10 pt-15">
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 ">
           <div>
             <h1 className="">Home</h1>
             <h2>Categories</h2>
@@ -47,9 +47,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between mt-8   border-t pt-4 border-customGray">
+        <div className="flex flex-col md:flex-row justify-between mt-8 border-t pt-4 border-customGray">
           <h2>@2023 streamvibe, All Rights Reserved</h2>
-          <div className="flex gap-5">
+          <div className="flex mt-2 gap-5">
             <h2>Terms of Use</h2>
             <h2 className="border-x px-4 border-customGray ">Privacy Policy</h2>
             <h2>Cookie Policy</h2>

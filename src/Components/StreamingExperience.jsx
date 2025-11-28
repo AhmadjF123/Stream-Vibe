@@ -13,16 +13,24 @@ import { FaVrCardboard } from "react-icons/fa";
 function StreamingExperience() {
   return (
     <>
-      <section className="bg-primary text-white px-20 pt-20">
-        <h1 className="text-[28px] font-bold">We Provide you streaming experience across various devices.</h1>
-        <p className="text-customGray mt-4 mb-10">
+      <section className="bg-primary text-white px-6 md:px-20 md:pt-20 pt-8">
+        <h1 className="md:text-[28px] text-[20px] font-bold">
+          We Provide you streaming experience across various devices.
+        </h1>
+
+        <p className="md:hidden text-customGray text-[14px] md:text-[16px] mt-4 mb-10">
+          With StreamVibe, you can enjoy your favorite movies and TV shows
+          anytime, anywhere.
+        </p>
+
+        <p className="hidden md:block text-customGray text-[14px] md:text-[16px] mt-4 mb-10">
           With StreamVibe, you can enjoy your favorite movies and TV shows
           anytime, anywhere. Our platform is designed to be compatible with a
-          wide range of devices, ensuring that you never miss a moment of
+          wide range of <br /> devices, ensuring that you never miss a moment of
           entertainment.
         </p>
 
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-center lg:justify-between">
           <StreamingCard
             icon={<MdSmartphone />}
             title={"Smartphones"}
