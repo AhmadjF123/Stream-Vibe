@@ -101,7 +101,7 @@ function Navbar() {
               <input
                 type="search"
                 placeholder="Search..."
-                className="bg-black px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
+                className="bg-black overflow-hidden px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
               />
             </div>
 
