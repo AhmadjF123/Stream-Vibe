@@ -181,11 +181,11 @@ function Navbar() {
             Subscriptions
           </NavLink>
           <div>
-            <div className="py-4 max-w-[50px]">
+            <div className="py-4">
               <input
                 type="search"
                 placeholder="Search..."
-                className="bg-black px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
+                className="bg-black max-w-full px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
               />
             </div>
           </div>
