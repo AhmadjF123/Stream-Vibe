@@ -123,7 +123,6 @@ function Navbar() {
         <div
   className={`
     h-screen w-60 fixed top-0 left-0 bg-black border border-gray-700 p-3 rounded-r-2xl z-40
-    overflow-hidden
     transform transition-transform duration-300
     ${menuOpen ? "translate-x-0" : "-translate-x-full"}
   `}
