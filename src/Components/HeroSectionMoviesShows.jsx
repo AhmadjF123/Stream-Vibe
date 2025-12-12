@@ -16,7 +16,6 @@ function HeroSectionMoviesShows() {
       try {
         const moviesData = await getPopularMovies();
         setMovies(moviesData.slice(0, 4));
-        console.log(moviesData);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +40,7 @@ function HeroSectionMoviesShows() {
 
   if (movies.length === 0)
     return (
-      <div className="text-center text-white text-4xl pb-4">Loading...</div>
+      <div className="flex justify-center items-center mx-auto w-20 h-20 border-t-white border-r-transparent border-b-white border-l-transparent border-4 rounded-full animate-spin"></div>
     );
 
   return (

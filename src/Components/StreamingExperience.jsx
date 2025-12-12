@@ -30,7 +30,7 @@ function StreamingExperience() {
           entertainment.
         </p>
 
-        <div className="flex flex-wrap justify-center lg:justify-between">
+        <div className="flex flex-wrap justify-center lg:justify-center lg:gap-5">
           <StreamingCard
             icon={<MdSmartphone />}
             title={"Smartphones"}

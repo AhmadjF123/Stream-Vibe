@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { NavLink } from "react-router";
-import { FaSearch, FaBell } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 
 function Navbar() {
   const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [isBlurred, setIsBlurred] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsBlurred(true);
+      } else {
+        setIsBlurred(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
       {/* Overlay with blur effect */}
@@ -17,7 +32,7 @@ function Navbar() {
         />
       )}
 
-      <section className="flex justify-between items-center md:px-25 py-7 text-white absolute w-full z-40">
+      <section className={`flex justify-between items-center md:px-9 py-7 text-white w-full z-40 fixed ${isBlurred ? "lg:backdrop-blur-2xl transition-all duration-500 ease-in-out" :""}`}>
         <div className="flex items-center justify-between w-full px-9">
           {/* Logo + Title */}
           <NavLink className="flex items-center gap-2">
@@ -75,27 +90,32 @@ function Navbar() {
           </div>
 
           <div className="flex items-center text-3xl">
+            {/* Search Input */}
             <div
               className={`
-              text-2xl rounded-2xl overflow-hidden
-              transition-all duration-500 ease-in-out
-              ${isSearchInputOpen ? "max-w-80 " : "max-w-0 mx-0"} 
-            `}
+                    text-2xl rounded-2xl overflow-hidden
+                    transition-all duration-500 ease-in-out 
+                    ${isSearchInputOpen ? "max-w-[315px]" : "max-w-0"}
+                  `}
             >
               <input
                 type="search"
                 placeholder="Search..."
-                className="w-full border px-4 py-2 rounded-2xl focus:outline-white"
+                className="bg-black px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
               />
             </div>
 
-            <FaSearch
-              onClick={() => setIsSearchInputOpen(!isSearchInputOpen)}
-              className={`cursor-pointer mx-4 transition-all duration-500 ease-in-out ${
-                isSearchInputOpen ? "rotate-360" : ""
-              }`}
-            />
-            <FaBell className="cursor-pointer" />
+            {/* Icon */}
+            <div className=" flex items-center justify-center">
+              <FaSearch
+                onClick={() => setIsSearchInputOpen(!isSearchInputOpen)}
+                className={`
+        cursor-pointer mx-4 transition-transform duration-500 ease-in-out
+        ${isSearchInputOpen ? "rotate-360" : ""}
+      `}
+                size={28}
+              />
+            </div>
           </div>
         </div>
 
@@ -108,9 +128,9 @@ function Navbar() {
           `}
         >
           <div className="flex justify-end">
-            <FiX 
-              onClick={() => setMenuOpen(false)} 
-              size={30} 
+            <FiX
+              onClick={() => setMenuOpen(false)}
+              size={30}
               className="cursor-pointer"
             />
           </div>
@@ -163,12 +183,9 @@ function Navbar() {
               <input
                 type="search"
                 placeholder="Search..."
-                className="w-full border text-lg px-4 py-2 rounded-2xl focus:outline-white"
+                className="bg-black px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
               />
             </div>
-          </div>
-          <div className="flex justify-center">
-            <FaBell className="cursor-pointer text-3xl" />
           </div>
         </div>
       </section>
