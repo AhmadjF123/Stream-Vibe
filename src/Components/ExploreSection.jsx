@@ -19,7 +19,7 @@ function ExploreSection({
   clickableMovie = false,
   clickableSerie = false,
   isSeries = false,
-  seriesEpisodes = false
+  seriesEpisodes = false,
 }) {
   const [items, setItems] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
@@ -70,7 +70,7 @@ function ExploreSection({
         </div>
 
         {/* Desktop navigation */}
-        <div className="bg-black rounded-2xl p-4 border border-zinc-800">
+        <div className="hidden lg:block bg-black rounded-2xl p-4 border border-zinc-800">
           <div className="md:flex hidden items-center gap-4">
             <button
               onClick={handlePrev}
@@ -108,17 +108,29 @@ function ExploreSection({
           {items.map((item) => (
             <SwiperSlide key={item.id || item.title}>
               <CategoriesCard
-                title={item.name || item.title || "Unknown"}
+                key={item.id || item.title}
+                movieTitle={item.name || item.title || "Unknown"}
                 images={
-                  item.images || [
-                    `https://image.tmdb.org/t/p/w200${
-                      item.poster_path || item.poster || ""
-                    }`,
-                    "logo.svg",
-                    "logo.svg",
-                    "logo.svg",
-                  ]
+                  item.images
+                    ? item.images // لو فيه array من الصور (Genres أو Top 10)
+                    : [
+                        `https://image.tmdb.org/t/p/w200${
+                          item.poster_path || item.poster
+                        }`,
+                      ] // صورة واحدة للأفلام العادية
                 }
+                showArrow={showArrow}
+                isTopTen={isTopTen}
+                showTitle={showTitle}
+                showViews={showViews} // true أو false
+                showReleaseDate={showReleaseDate} // true أو false
+                showDuration={showDuration} // true أو false
+                showRating={showRating} // true أو false
+                item={item}
+                clickableMovie={clickableMovie}
+                clickableSerie={clickableSerie}
+                isSeries={isSeries}
+                seriesEpisodes={seriesEpisodes}
               />
             </SwiperSlide>
           ))}
@@ -151,7 +163,7 @@ function ExploreSection({
             clickableMovie={clickableMovie}
             clickableSerie={clickableSerie}
             isSeries={isSeries}
-            seriesEpisodes = {seriesEpisodes}
+            seriesEpisodes={seriesEpisodes}
           />
         ))}
       </div>

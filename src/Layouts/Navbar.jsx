@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { FaSearch } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
@@ -32,8 +32,14 @@ function Navbar() {
         />
       )}
 
-      <section className={`flex justify-between items-center md:px-9 py-7 text-white w-full z-40 fixed ${isBlurred ? "lg:backdrop-blur-2xl transition-all duration-500 ease-in-out" :""}`}>
-        <div className="flex items-center justify-between w-full px-9">
+      <section
+        className={`flex justify-between items-center md:px-9 py-7 text-white w-full z-40 fixed ${
+          isBlurred
+            ? "backdrop-blur-2xl transition-all duration-500 ease-in-out"
+            : ""
+        }`}
+      >
+        <div className="flex items-center justify-between w-full px-4">
           {/* Logo + Title */}
           <NavLink className="flex items-center gap-2">
             <img className="w-10 md:w-full" src="/logo.svg" alt="" />
@@ -43,7 +49,16 @@ function Navbar() {
           {/* Mobile Navbar icon */}
           {!menuOpen && (
             <div
-              className="lg:hidden flex gap-1 flex-col justify-between w-7 h-6 cursor-pointer bg-third rounded border-3 border-[#262626] p-0.5"
+              className="
+                      lg:hidden
+                      flex flex-col justify-between gap-1
+                      w-10 h-8
+                      cursor-pointer
+                      bg-third
+                      rounded
+                      border-3 border-[#262626]
+                      p-1.5
+                    "
               onClick={() => setMenuOpen(true)}
             >
               <span className="block h-1 w-full bg-white rounded"></span>
@@ -121,14 +136,13 @@ function Navbar() {
 
         {/* Mobile Navbar */}
         <div
-  className={`
+          className={`
     h-screen w-60 fixed top-0 left-0 bg-black border border-gray-700 p-3 rounded-r-2xl z-40
     overflow-hidden
     transform transition-transform duration-300
     ${menuOpen ? "translate-x-0" : "-translate-x-full"}
   `}
->
-
+        >
           <div className="flex justify-end">
             <FiX
               onClick={() => setMenuOpen(false)}

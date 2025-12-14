@@ -16,15 +16,15 @@ function SeasonBlock({ season, tvId }) {
   };
 
   return (
-    <div className="bg-black rounded-2xl py-4 px-10 mb-4">
+    <div className="bg-black rounded-2xl p-4 md:px-10 mb-4">
       {/* Header */}
       <div
         onClick={loadEpisodes}
         className="flex cursor-pointer justify-between items-center border-grayBlack rounded-2xl"
       >
         <div className="flex items-center gap-2 ">
-          <h1 className="text-2xl">Season {season.season_number}</h1>
-          <h3 className="text-customGray">
+          <h1 className="text-[16px] md:text-2xl">Season {season.season_number}</h1>
+          <h3 className="text-customGray text-[14px]">
             {season.episode_count} Episodes
           </h3>
         </div>
