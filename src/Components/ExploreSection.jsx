@@ -18,6 +18,7 @@ function ExploreSection({
   showRating = false,
   clickableMovie = false,
   clickableSerie = false,
+  clickableCategory = false,
   isSeries = false,
   seriesEpisodes = false,
 }) {
@@ -162,6 +163,7 @@ function ExploreSection({
             item={item}
             clickableMovie={clickableMovie}
             clickableSerie={clickableSerie}
+            clickableCategory={clickableCategory}
             isSeries={isSeries}
             seriesEpisodes={seriesEpisodes}
           />

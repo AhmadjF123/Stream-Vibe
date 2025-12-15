@@ -10,6 +10,7 @@ import { createBrowserRouter, Router, Routes, Route } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MovieDetailsPage from "./Pages/MovieDetailsPage";
 import SerieDetailsPage from "./Pages/SerieDetailsPage";
+import CategoryDetailsPage from "./Pages/CategoryDetailsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,7 @@ function App() {
         { path: "/support", element: <SupportPage /> },
         { path: "/movie-details/:id", element: <MovieDetailsPage /> },
         { path: "/serie-details/:id", element: <SerieDetailsPage /> },
+        { path: "/category-details/:id", element: <CategoryDetailsPage /> },
         // { path: "/productdetails/:id", element: <ProductDetailsPage /> },
 
         // {

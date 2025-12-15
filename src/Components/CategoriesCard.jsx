@@ -20,6 +20,7 @@ function CategoriesCard({
   item,
   clickableMovie = false,
   clickableSerie = false,
+  clickableCategory = false,
   isSeries = false,
   seriesEpisodes = false,
 }) {
@@ -39,12 +40,22 @@ function CategoriesCard({
     navigate(`/serie-details/${item.id}`);
   };
 
+  const handleNavigateCategories = () => {
+    if (!clickableCategory) return; // ما بدي يروح للتفاصيل
+    if (!item?.id) return; // لازم ID
+
+    navigate(`/category-details/${item.id}`);
+  };
+
   const handleCardClick = () => {
     if (clickableMovie) {
       handleNavigateMovie();
     } else if (clickableSerie) {
       handleNavigateSerie();
     }
+    // else if (clickableCategory) {
+    //   handleNavigateCategories()
+    // }
   };
 
   const isSingleImage = images.length === 1;
@@ -80,12 +91,10 @@ function CategoriesCard({
       <div className="stars">
         {[...Array(5)].map((_, i) => (
           <span
+            className={`${
+              i < stars ? "text-red-500" : "text-white"
+            } text-[20px] md:text-[10px]`}
             key={i}
-            style={{
-              color: i < stars ? "red" : "white",
-              fontSize: "10px",
-              marginRight: "3px",
-            }}
           >
             ★
           </span>
@@ -98,7 +107,7 @@ function CategoriesCard({
     <div
       onClick={handleCardClick}
       className={`w-fit flex flex-col justify-between border border-gray-700 p-4 rounded-2xl mb-7 bg-zinc-900 ${
-        clickableMovie || clickableSerie
+        clickableMovie || clickableSerie || clickableCategory
           ? "cursor-pointer hover:bg-zinc-800"
           : ""
       }`}
@@ -140,7 +149,7 @@ function CategoriesCard({
         </div>
 
         <div className="text-xs text-customGray">
-          <div className="flex justify-between">
+          <div className="flex flex-col items-center md:flex-row justify-between">
             {showDuration && item?.runtime && (
               <div className="flex items-center gap-1 border border-primary w-fit rounded-2xl px-2 bg-black py-1">
                 <FaClock size={15} />
@@ -159,7 +168,7 @@ function CategoriesCard({
 
             {showViews && showRating && (
               <div className="flex items-center gap-1 border border-primary w-fit rounded-2xl px-2 bg-black py-1">
-                <div>{renderStars(item.rating)}</div> {/* ← غيرت p لـ div */}
+                <div>{renderStars(item.rating)}</div>
                 {formatViews(
                   item.viewCount || item.vote_count || item.popularity
                 )}
@@ -175,7 +184,7 @@ function CategoriesCard({
           )}
 
           {isSeries && (
-            <div className="flex justify-between">
+            <div className="flex text-[20px] md:text-[14px] gap-2 flex-col items-center md:flex-row justify-between">
               <h1 className=" border border-primary w-fit rounded-2xl px-4 bg-black py-1">
                 {item.seasons} {item.seasons > 1 ? "Seasons" : "Season"}
               </h1>
@@ -188,7 +197,7 @@ function CategoriesCard({
           )}
 
           {seriesEpisodes && (
-            <div className="flex justify-between">
+            <div className="flex text-[20px] md:text-[14px] gap-2 flex-col items-center md:flex-row justify-between">
               <h1 className=" border border-primary w-fit rounded-2xl px-4 bg-black py-1">
                 {item.episodes} Episodes
               </h1>
