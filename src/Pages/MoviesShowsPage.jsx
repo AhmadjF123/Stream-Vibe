@@ -154,7 +154,6 @@ function MoviesShowsPage() {
               title="Our Genres"
               showTitle={true}
               apiFunc={getGenresWithImages}
-              clickableCategory = {true}
             />
 
             <ExploreSection
@@ -162,7 +161,7 @@ function MoviesShowsPage() {
               isTopTen
               showTitle={true}
               apiFunc={getTopMoviesForAllGenres}
-              clickableCategory
+              
             />
 
             <ExploreSection
@@ -204,7 +203,7 @@ function MoviesShowsPage() {
               title="Our Genres"
               showTitle={true}
               apiFunc={getTVGenresWithImages}
-              clickableCategory
+              
             />
 
             <ExploreSection
@@ -212,7 +211,7 @@ function MoviesShowsPage() {
               isTopTen
               showTitle={true}
               apiFunc={getTopTVShowsForAllGenres}
-              clickableCategory
+              
             />
 
             <ExploreSection

@@ -107,7 +107,7 @@ function SerieDetails() {
                       className="rounded mb-2"
                       alt={actor.name}
                     />
-                    {/* <p className="text-sm text-center">{actor.name}</p> */}
+                    <p className="text-sm text-center">{actor.name}</p>
                   </div>
                 ))}
               </div>
@@ -337,46 +337,27 @@ function SerieDetails() {
               </div>
             </div>
 
-
-
-
             <div className="border w-full border-grayBlack bg-primary rounded px-10 py-5">
               <div className="flex items-center justify-between">
                 <h1 className="text-customGray">Cast</h1>
               </div>
 
-              <div className="flex flex-wrap gap-4 overflow-x-auto py-3">
-                
-              </div>
+              <div className="flex flex-wrap gap-4 overflow-x-auto py-3"></div>
 
               <Swiper spaceBetween={20} slidesPerView={1.5}>
-                
-
-
-
-
-
-
-
                 {serie.credits?.cast?.slice(0, 10).map((actor) => (
                   <div key={actor.id} className="w-24">
-                    
-                  <SwiperSlide key={actor.id || actor.title}>
-<img
-                      src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                      className="rounded mb-2"
-                      alt={actor.name}
-                    />
-                  </SwiperSlide>
+                    <SwiperSlide key={actor.id || actor.title}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                        className="rounded mb-2"
+                        alt={actor.name}
+                      />
+                    </SwiperSlide>
                   </div>
-
                 ))}
               </Swiper>
             </div>
-
-
-
-
           </div>
         </div>
 

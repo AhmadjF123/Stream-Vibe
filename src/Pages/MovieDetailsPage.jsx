@@ -7,7 +7,6 @@ function MovieDetailsPage() {
   return (
     <>
       <div className="pt-30 bg-black">
-        {/* <HeroSectionMoviesDetails /> */}
 
         <MovieDetails />
 

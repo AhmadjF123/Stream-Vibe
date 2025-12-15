@@ -44,7 +44,9 @@ function CategoriesCard({
     if (!clickableCategory) return; // ما بدي يروح للتفاصيل
     if (!item?.id) return; // لازم ID
 
-    navigate(`/category-details/${item.id}`);
+    const mediaType = isSeries ? "tv" : "movie";
+
+    navigate(`/category-details/${mediaType}/${item.id}`);
   };
 
   const handleCardClick = () => {
@@ -52,10 +54,9 @@ function CategoriesCard({
       handleNavigateMovie();
     } else if (clickableSerie) {
       handleNavigateSerie();
+    } else if (clickableCategory) {
+      handleNavigateCategories();
     }
-    // else if (clickableCategory) {
-    //   handleNavigateCategories()
-    // }
   };
 
   const isSingleImage = images.length === 1;

@@ -496,3 +496,12 @@ export const getSeasonDetails = async (tvId, seasonNumber) => {
     return null;
   }
 };
+
+
+
+export const getSeriesByGenre = async (genreId) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}&api_key=XXX`
+  );
+  return res.json();
+};

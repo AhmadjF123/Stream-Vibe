@@ -1,43 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getMoviesByGenre } from "../api/movieApi";
+import { getMoviesByGenre, getSeriesByGenre } from "../api/movieApi";
+import CategoriesCard from "../Components/CategoriesCard";
 
 function CategoryDetailsPage() {
-  const { id } = useParams();
-  const [movies, setMovies] = useState([]);
+  const { genreId, mediaType } = useParams();
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (!id) return;
+    if (!genreId || !mediaType) return;
 
-    const fetchMovies = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getMoviesByGenre(id);
-        setMovies(data.results || []);
+        const data =
+          mediaType === "movie"
+            ? await getMoviesByGenre(genreId)
+            : await getSeriesByGenre(genreId);
+
+        setItems(data.results || []);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchMovies();
-  }, [id]);
+    fetchData();
+  }, [genreId, mediaType]);
 
   return (
-    <div className="px-6 py-10">
-      <h1 className="text-2xl text-white mb-6">Category Movies</h1>
+    <div className="px-6 py-10 pt-30">
+      <h1 className="text-2xl text-white mb-6">
+        {mediaType === "movie" ? "Movies" : "Series"}
+      </h1>
 
       <div className="flex flex-wrap gap-6">
-        {movies.map((movie) => (
+        {items.map((item) => (
           <CategoriesCard
-            key={movie.id}
-            movieTitle={movie.title}
+            key={item.id}
+            movieTitle={item.title || item.name}
             images={[
-              `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              `https://image.tmdb.org/t/p/w500${item.poster_path}`,
             ]}
-            item={movie}
-            clickableMovie={true}
-            showTitle={true}
-            showRating={true}
-            showViews={true}
+            item={item}
+            clickableMovie={mediaType === "movie"}
+            clickableSerie={mediaType === "tv"}
+            showTitle
+            showRating
+            showViews
           />
         ))}
       </div>

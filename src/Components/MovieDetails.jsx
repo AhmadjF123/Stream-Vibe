@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getFullMovieDetails } from "../api/movieApi";
 
 import { HiVolumeUp } from "react-icons/hi";
@@ -9,14 +9,15 @@ import { IoLanguageSharp } from "react-icons/io5";
 import { CiStar } from "react-icons/ci";
 import { BsGrid } from "react-icons/bs";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { MdEventBusy } from "react-icons/md";
-import { MdLiveTv } from "react-icons/md";
+
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -73,20 +74,16 @@ function MovieDetails() {
 
       {/* Details Desktop Screen */}
 
-      <div className="hidden md:block flex justify-between gap-4">
-        <div className="w-fit md:w-full flex flex-col gap-4">
-          <div className="border border-grayBlack bg-primary rounded px-10 py-5">
-            <h1 className="text-customGray text-[14px] md:text-[18px] ">
-              Description
-            </h1>
-            <p className="text-[14px] md:text-[18px] ">{movie.overview}</p>
+      <div className="hidden md:flex gap-4">
+        <div className="w-fit md:w-[70%] flex flex-col gap-4">
+          <div className="border w-fit border-grayBlack bg-primary rounded px-10 py-5">
+            <h1 className="text-[18px] text-customGray">Description</h1>
+            <p className="text-[18px]">{movie.overview}</p>
           </div>
 
           <div className="border border-grayBlack bg-primary rounded px-10 py-5">
             <div className="flex items-center justify-between">
-              <h1 className="text-customGray text-[14px] md:text-[18px] ">
-                Cast
-              </h1>
+              <h1 className="text-customGray text-[18px]">Cast</h1>
             </div>
 
             <div className="flex gap-4 overflow-x-auto py-3">
@@ -97,24 +94,24 @@ function MovieDetails() {
                     className="rounded mb-2"
                     alt={actor.name}
                   />
-                  {/* <p className="text-sm text-center">{actor.name}</p> */}
+                  <p className="text-sm text-center">{actor.name}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="md:w border-grayBlack mt-4 bg-primary rounded px-10 py-5">
-          <div className="mb-4">
-            <div className="text-customGray mb-2 flex items-center gap-1 ">
-              <h1>
-                <AiOutlineCalendar />
-              </h1>
-              <h1 className="text-[14px] md:text-[18px]"> Released Year</h1>
+        <div className="w-[30%] h-fit border border-grayBlack rounded-2xl bg-primary px-10 py-5">
+          <div className="flex justify-between">
+            <div className="mb-4">
+              <div className="text-customGray mb-2 flex items-center gap-1 ">
+                <h1>
+                  <AiOutlineCalendar />
+                </h1>
+                <h1 className="text-[18px]"> Released Year</h1>
+              </div>
+              <h2 className="text-[20px]">{movie.release_date?.slice(0, 4)}</h2>
             </div>
-            <h2 className="text-[16px] md:text-[20px]">
-              {movie.release_date?.slice(0, 4)}
-            </h2>
           </div>
 
           <div className="mb-4">
@@ -122,13 +119,11 @@ function MovieDetails() {
               <h1>
                 <IoLanguageSharp />
               </h1>
-              <h1 className="text-[14px] md:text-[18px]">
-                Available Languages
-              </h1>
+              <h1 className="text-[18px]">Available Languages</h1>
             </div>
             <div className="flex gap-1">
               {movie.spoken_languages?.map((l) => (
-                <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[14px] md:text-[20px]">
+                <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[20px]">
                   {l.english_name}
                 </div>
               ))}
@@ -140,9 +135,9 @@ function MovieDetails() {
               <h1>
                 <CiStar />
               </h1>
-              <h1 className="text-[14px] md:text-[18px]"> Ratings</h1>
+              <h1 className="text-[18px]"> Ratings</h1>
             </div>
-            <h2 className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[14px] md:text-[20px]">
+            <h2 className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[20px]">
               {movie.vote_average}
             </h2>
           </div>
@@ -152,11 +147,11 @@ function MovieDetails() {
               <h1>
                 <BsGrid />
               </h1>
-              <h1 className="text-[14px] md:text-[18px]">Genres</h1>
+              <h1 className="text-[18px]">Genres</h1>
             </div>
             <h2 className="flex flex-wrap gap-1">
               {movie.genres?.map((g) => (
-                <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px]  text-[14px] md:text-[20px]">
+                <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[20px]">
                   {g.name}
                 </div>
               ))}
@@ -164,25 +159,24 @@ function MovieDetails() {
           </div>
 
           <div className="mb-4">
-            <h1 className="text-customGray text-[14px] md:text-[18px]">
-              Director
-            </h1>
+            <h1 className="text-customGray text-[18px]">Director</h1>
+
             <h2 className="text-[16px] md:text-[20px]">
               {movie.credits?.crew?.find((p) => p.job === "Director")?.name ||
                 "Unknown"}
-
-              {movie.credits?.crew?.find((p) => p.job === "Director")
-                ?.profile || ""}
             </h2>
           </div>
 
           <div className="mb-4">
-            <h1 className="text-customGray text-[14px] md:text-[18px]">
-              Music
-            </h1>
-            <h2 className="text-[14px] md:text-[20px]">
+            <h1 className="text-customGray text-[14px]">Music</h1>
+            <h2 className="text-[16px] md:text-[20px]">
               {movie.credits?.crew
-                ?.filter((p) => p.job === "Original Music Composer")
+                ?.filter(
+                  (p) =>
+                    p.job === "Original Music Composer" ||
+                    p.job === "Music" ||
+                    p.job === "Composer"
+                )
                 .map((p) => p.name)
                 .join(", ") || "Unknown"}
             </h2>
@@ -285,20 +279,22 @@ function MovieDetails() {
             </div>
           </div>
         </div>
+
         <div className="border border-grayBlack bg-primary rounded px-10 py-5">
           <h1 className="text-customGray text-[14px]">Cast</h1>
 
-          <Swiper spaceBetween={0} slidesPerView={3}>
+          <Swiper spaceBetween={20} slidesPerView={1.5}>
             {movie.credits?.cast?.slice(0, 10).map((actor) => (
-              <SwiperSlide key={actor.id}>
-                <div className="py-3 mr-4">
+              <div key={actor.id} className="w-24">
+                <SwiperSlide key={actor.id || actor.title}>
                   <img
                     src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                    className="rounded"
+                    className="rounded mb-2"
                     alt={actor.name}
                   />
-                </div>
-              </SwiperSlide>
+                  <p className="text-sm text-center">{actor.name}</p>
+                </SwiperSlide>
+              </div>
             ))}
           </Swiper>
         </div>

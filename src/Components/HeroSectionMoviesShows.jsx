@@ -8,11 +8,13 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router";
 
 function HeroSectionMoviesShows() {
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,7 +55,10 @@ function HeroSectionMoviesShows() {
           backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div
+          // onClick={() => navigate(`/movie-details/${movie.id}`)}
+          className="absolute cursor-pointer inset-0 bg-black/40"
+        ></div>
 
         <div className="absolute left-1/2 bottom-30 md:bottom-20 -translate-x-1/2 z-10 text-center">
           <div className="mb-4">
@@ -81,62 +86,7 @@ function HeroSectionMoviesShows() {
           </div>
         </div>
 
-        {/* <Swiper spaceBetween={20} slidesPerView={1.5}>
-          {items.map((item) => (
-            <SwiperSlide key={item.id || item.title}>
-              <CategoriesCard
-                key={item.id || item.title}
-                movieTitle={item.name || item.title || "Unknown"}
-                images={
-                  item.images
-                    ? item.images // لو فيه array من الصور (Genres أو Top 10)
-                    : [
-                        `https://image.tmdb.org/t/p/w200${
-                          item.poster_path || item.poster
-                        }`,
-                      ] // صورة واحدة للأفلام العادية
-                }
-                showArrow={showArrow}
-                isTopTen={isTopTen}
-                showTitle={showTitle}
-                showViews={showViews} // true أو false
-                showReleaseDate={showReleaseDate} // true أو false
-                showDuration={showDuration} // true أو false
-                showRating={showRating} // true أو false
-                item={item}
-                clickableMovie={clickableMovie}
-                clickableSerie={clickableSerie}
-                isSeries={isSeries}
-                seriesEpisodes={seriesEpisodes}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper> */}
-
-
-{/* Mobile Swiper */}
-<div className="md:hidden absolute bottom-6 left-0 w-full z-10 px-4">
-  <Swiper
-    spaceBetween={12}
-    slidesPerView={1}
-    onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-  >
-    {movies.map((movieItem, index) => (
-      <SwiperSlide key={movieItem.id}>
-        {/* <div className="flex justify-center gap-2">
-          {[...Array(totalSteps)].map((_, dotIndex) => (
-            <div
-              key={dotIndex}
-              className={`h-1 w-6 rounded-full transition-colors duration-300 ${
-                index === dotIndex ? "bg-red-600" : "bg-zinc-700"
-              }`}
-            />
-          ))}
-        </div> */}
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div>
+      
 
 
 
@@ -154,7 +104,8 @@ function HeroSectionMoviesShows() {
 
 
 
-        <div className="hidden md:flex items-center justify-between absolute bottom-4 z-10 w-full px-20">
+
+        <div className="flex items-center justify-between absolute bottom-4 z-10 w-full px-20">
           <button onClick={handlePrev}>
             <FaArrowLeft
               size={50}

@@ -23,7 +23,7 @@ function App() {
         { path: "/support", element: <SupportPage /> },
         { path: "/movie-details/:id", element: <MovieDetailsPage /> },
         { path: "/serie-details/:id", element: <SerieDetailsPage /> },
-        { path: "/category-details/:id", element: <CategoryDetailsPage /> },
+        { path: "/category-details/:mediaType/:genreId", element: <CategoryDetailsPage /> },
         // { path: "/productdetails/:id", element: <ProductDetailsPage /> },
 
         // {

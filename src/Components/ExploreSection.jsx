@@ -46,12 +46,7 @@ function ExploreSection({
     currentStep < totalSteps - 1 && setCurrentStep(currentStep + 1);
   const handlePrev = () => currentStep > 0 && setCurrentStep(currentStep - 1);
 
-  // if (items.length === 0)
-  //   return (
-  //     <div className="text-center text-white text-4xl pb-4 pt-20">
-  //       Loading...
-  //     </div>
-  //   );
+
 
   if (items.length === 0)
     return (
@@ -63,7 +58,7 @@ function ExploreSection({
     <div className="bg-primary text-white w-full flex flex-col justify-between overflow-hidden md:mt-20 px-2">
       {/* Header */}
       <div className="flex flex-wrap lg:flex-nowrap items-center gap-4 justify-between px-4 md:px-10 lg:px-20">
-        <div className="w-full">
+        <div className="w-full mb-4">
           <h1 className="md:text-3xl text-[24px] font-bold mb-2">{title}</h1>
           {desc && (
             <p className="text-customGray text-[14px] md:text-[16px]">{desc}</p>
