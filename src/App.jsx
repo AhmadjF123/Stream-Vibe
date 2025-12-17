@@ -24,15 +24,7 @@ function App() {
         { path: "/movie-details/:id", element: <MovieDetailsPage /> },
         { path: "/serie-details/:id", element: <SerieDetailsPage /> },
         { path: "/category-details/:mediaType/:genreId", element: <CategoryDetailsPage /> },
-        // { path: "/productdetails/:id", element: <ProductDetailsPage /> },
-
-        // {
-        // element: <ProtectedRoute />,
-        // children: [
-        // { path: "/profile", element: <ProfilePage /> },
-        // { path: "/cart", element: <CartPage /> },
-        // { path: "/wishlist", element: <WishList /> },
-        // { path: "/checkout", element: <CheckoutPage /> },
+    
         ,
       ],
     },
