@@ -353,6 +353,8 @@ function SerieDetails() {
                         className="rounded mb-2"
                         alt={actor.name}
                       />
+                    <p className="text-sm text-center">{actor.name}</p>
+
                     </SwiperSlide>
                   </div>
                 ))}
