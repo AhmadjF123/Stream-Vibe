@@ -3,11 +3,36 @@ import { NavLink } from "react-router";
 import { FaSearch } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 
+import { searchMulti } from "../api/movieApi";
+
+import { useNavigate } from "react-router";
+
 function Navbar() {
   const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const [isBlurred, setIsBlurred] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (searchTerm.trim().length < 2) {
+      setResults([]);
+      return;
+    }
+
+    const delay = setTimeout(async () => {
+      setLoading(true);
+      const data = await searchMulti(searchTerm);
+      setResults(data);
+      setLoading(false);
+    }, 400); // debounce
+
+    return () => clearTimeout(delay);
+  }, [searchTerm]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,18 +131,75 @@ function Navbar() {
 
           <div className="flex items-center text-3xl">
             {/* Search Input */}
-            <div
-              className={`
-                    text-2xl rounded-2xl overflow-hidden
-                    transition-all duration-500 ease-in-out 
-                    ${isSearchInputOpen ? "max-w-[315px]" : "max-w-0"}
-                  `}
-            >
-              <input
-                type="search"
-                placeholder="Search..."
-                className="bg-black overflow-hidden px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
-              />
+
+            <div className="relative">
+              {/* Search Input */}
+              <div
+                className={`
+      text-2xl rounded-2xl overflow-hidden
+      transition-all duration-500 ease-in-out 
+      ${isSearchInputOpen ? "max-w-[315px]" : "max-w-0"}
+    `}
+              >
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  className="bg-black px-4 py-2 rounded-2xl border-3 border-gray-700 w-[315px]"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+
+              {/* Search Results */}
+              {isSearchInputOpen && searchTerm && (
+                <div className="absolute top-full right-0 mt-3 w-[350px] bg-black border border-gray-700 rounded-2xl shadow-xl max-h-[420px] overflow-y-auto z-50">
+                  {loading && (
+                    <p className="text-center py-4 text-gray-400">
+                      Searching...
+                    </p>
+                  )}
+
+                  {!loading && results.length === 0 && (
+                    <p className="text-center py-4 text-gray-400">
+                      No results found
+                    </p>
+                  )}
+
+                  {results.map((item) => (
+                    <div
+                      key={`${item.type}-${item.id}`}
+                      onClick={() => {
+                        navigate(
+                          item.type === "movie"
+                            ? `/movie-details/${item.id}`
+                            : `/serie-details/${item.id}`
+                        );
+                        setSearchTerm("");
+                        setResults([]);
+                        setIsSearchInputOpen(false);
+                      }}
+                      className="flex gap-3 items-center px-4 py-3 hover:bg-gray-800 cursor-pointer transition"
+                    >
+                      <img
+                        src={
+                          item.poster_path
+                            ? `https://image.tmdb.org/t/p/w92${item.poster_path}`
+                            : "/no-image.png"
+                        }
+                        className="w-12 h-16 object-cover rounded"
+                        alt={item.title}
+                      />
+
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{item.title}</span>
+                        <span className="text-xs text-gray-400">
+                          {item.type === "movie" ? "Movie" : "TV Show"}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Icon */}
@@ -195,13 +277,79 @@ function Navbar() {
             Subscriptions
           </NavLink>
           <div>
-            <div className="py-4">
-              <input
-                type="search"
-                placeholder="Search..."
-                className="bg-black max-w-full px-4 py-2 rounded-2xl border-3 border-gray-700 transition-all duration-300 ease-in-out focus:border-gray-300 focus:outline-none"
-              />
+           
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+           {/* Mobile Search */}
+  <div className="py-4 relative">
+    <input
+      type="search"
+      placeholder="Search..."
+      className="bg-black max-w-full px-4 py-2 rounded-2xl border-3 border-gray-700 w-full focus:border-gray-300 focus:outline-none"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+
+    {/* Mobile Search Results */}
+    {searchTerm && (
+      <div className="absolute top-full left-0 mt-3 w-full bg-black border border-gray-700 rounded-2xl shadow-xl max-h-[420px] overflow-y-auto z-50">
+        {loading && (
+          <p className="text-center py-4 text-gray-400">Searching...</p>
+        )}
+        {!loading && results.length === 0 && (
+          <p className="text-center py-4 text-gray-400">No results found</p>
+        )}
+        {results.map((item) => (
+          <div
+            key={`${item.type}-${item.id}`}
+            onClick={() => {
+              navigate(
+                item.type === "movie"
+                  ? `/movie-details/${item.id}`
+                  : `/serie-details/${item.id}`
+              );
+              setSearchTerm("");
+              setResults([]);
+              setMenuOpen(false);
+            }}
+            className="flex gap-3 items-center px-4 py-3 hover:bg-gray-800 cursor-pointer transition"
+          >
+            <img
+              src={
+                item.poster_path
+                  ? `https://image.tmdb.org/t/p/w92${item.poster_path}`
+                  : "/no-image.png"
+              }
+              className="w-12 h-16 object-cover rounded"
+              alt={item.title}
+            />
+            <div className="flex flex-col">
+              <span className="font-semibold">{item.title}</span>
+              <span className="text-xs text-gray-400">
+                {item.type === "movie" ? "Movie" : "TV Show"}
+              </span>
             </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+         
+
+            
           </div>
         </div>
       </section>

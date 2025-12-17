@@ -121,7 +121,7 @@ function MovieDetails() {
               </h1>
               <h1 className="text-[18px]">Available Languages</h1>
             </div>
-            <div className="flex gap-1">
+            <div className="flex flex-wrap gap-1">
               {movie.spoken_languages?.map((l) => (
                 <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[20px]">
                   {l.english_name}
@@ -189,10 +189,10 @@ function MovieDetails() {
       {/* Details Mobile Screen */}
       <div className="md:hidden flex flex-col justify-between gap-4">
         <div className="w-fit flex flex-col gap-4">
-          <div className="border border-grayBlack bg-primary rounded px-10 py-5">
-            <h1 className="text-customGray text-[14px]">Description</h1>
-            <p className="text-[14px]">{movie.overview}</p>
-          </div>
+          <div className="border flex flex-col border-grayBlack bg-primary rounded px-5 py-5 w-full">
+  <h1 className="text-customGray text-[14px]">Description</h1>
+  <p className="text-[14px] break-words">{movie.overview}</p>
+</div>
 
           <div className=" border border-grayBlack bg-primary rounded px-10 py-5">
             <div className="mb-4">
@@ -216,9 +216,9 @@ function MovieDetails() {
                   Available Languages
                 </h1>
               </div>
-              <div className="flex gap-1">
+              <div className="flex flex-wrap gap-1">
                 {movie.spoken_languages?.map((l) => (
-                  <div className="bg-black w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[14px] md:text-[20px]">
+                  <div className="bg-black flex flex-wrap w-fit px-4 py-2 border border-grayBlack rounded-[10px] text-[14px] md:text-[20px]">
                     {l.english_name}
                   </div>
                 ))}
